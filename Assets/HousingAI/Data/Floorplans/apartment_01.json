@@ -1,0 +1,41 @@
+{
+  "apartmentId": "apt_01",
+  "buildingId": "building_01",
+  "name": "Apartamento A",
+  "floor": 1,
+  "rooms": [
+    {
+      "id": "living_room",
+      "name": "Sala",
+      "type": "living_room",
+      "people": 3,
+      "x": 0,
+      "y": 0,
+      "width": 5,
+      "height": 4,
+      "color": "#C8A2C8"
+    },
+    {
+      "id": "bedroom_01",
+      "name": "Quarto",
+      "type": "bedroom",
+      "people": 1,
+      "x": 5,
+      "y": 0,
+      "width": 3,
+      "height": 4,
+      "color": "#A7C7E7"
+    },
+    {
+      "id": "bathroom_01",
+      "name": "WC",
+      "type": "bathroom",
+      "people": 3,
+      "x": 0,
+      "y": 4,
+      "width": 2,
+      "height": 2,
+      "color": "#B5EAD7"
+    }
+  ]
+}
