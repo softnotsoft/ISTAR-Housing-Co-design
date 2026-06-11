@@ -9,6 +9,9 @@ public class FloorPlanRenderer : MonoBehaviour
     [Header("Parent")]
     public Transform roomsParent;
 
+    [Header("Sprites")]
+    public Sprite roomSprite;
+
     public void Render(ApartmentData apartment)
     {
         ClearPreviousRooms();
@@ -34,7 +37,7 @@ public class FloorPlanRenderer : MonoBehaviour
         );
 
         SpriteRenderer renderer = roomObject.AddComponent<SpriteRenderer>();
-        renderer.sprite = CreateWhiteSprite();
+        renderer.sprite = roomSprite;
         renderer.drawMode = SpriteDrawMode.Sliced;
         renderer.size = new Vector2(room.width * scale, room.height * scale);
 
@@ -94,19 +97,6 @@ public class FloorPlanRenderer : MonoBehaviour
         text.fontSize = 2;
         text.alignment = TextAlignmentOptions.Center;
         text.color = Color.black;
-    }
-
-    private Sprite CreateWhiteSprite()
-    {
-        Texture2D texture = new Texture2D(1, 1);
-        texture.SetPixel(0, 0, Color.white);
-        texture.Apply();
-
-        return Sprite.Create(
-            texture,
-            new Rect(0, 0, 1, 1),
-            new Vector2(0.5f, 0.5f)
-        );
     }
 
     private void ClearPreviousRooms()

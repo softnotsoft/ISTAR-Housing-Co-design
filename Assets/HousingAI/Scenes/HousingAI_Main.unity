@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 723818097}
   - component: {fileID: 723818099}
   - component: {fileID: 723818098}
+  - component: {fileID: 723818100}
   m_Layer: 0
   m_Name: App Manager
   m_TagString: Untagged
@@ -211,6 +212,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorPlanJson: {fileID: 4900000, guid: cc794f5aa2977d0489f9871539cf32bf, type: 3}
   floorPlanRenderer: {fileID: 723818098}
+  cameraController: {fileID: 723818100}
+--- !u!114 &723818100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aef5621c1a946b45961bbf870206ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 1027259725}
+  roomsParent: {fileID: 324632150}
+  padding: 1.5
+  zoomSpeed: 5
+  minZoom: 2
+  maxZoom: 20
+  panSpeed: 1
 --- !u!1 &1027259723
 GameObject:
   m_ObjectHideFlags: 0
