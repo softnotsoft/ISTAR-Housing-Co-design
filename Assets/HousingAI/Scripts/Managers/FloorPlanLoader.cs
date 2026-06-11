@@ -8,6 +8,9 @@ public class FloorPlanLoader : MonoBehaviour
     [Header("Renderer")]
     public FloorPlanRenderer floorPlanRenderer;
 
+    [Header("Camera")]
+    public FloorPlanCameraController cameraController;
+
     private void Start()
     {
         LoadFloorPlan();
@@ -36,6 +39,11 @@ public class FloorPlanLoader : MonoBehaviour
         }
 
         floorPlanRenderer.Render(apartment);
+
+        if (cameraController != null)
+        {
+            cameraController.FocusOnFloorPlan();
+        }
 
         Debug.Log($"Planta carregada: {apartment.name}");
     }
