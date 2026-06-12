@@ -1,0 +1,35 @@
+{
+  "unit": "meters",
+  "rules": [
+    {
+      "roomType": "bedroom",
+      "people": 1,
+      "minArea": 6.0
+    },
+    {
+      "roomType": "bedroom",
+      "people": 2,
+      "minArea": 10.0
+    },
+    {
+      "roomType": "living_room",
+      "people": 3,
+      "minArea": 12.0
+    },
+    {
+      "roomType": "kitchen",
+      "people": 3,
+      "minArea": 8.0
+    },
+    {
+      "roomType": "bathroom",
+      "people": 3,
+      "minArea": 4.0
+    },
+    {
+      "roomType": "corridor",
+      "people": 3,
+      "minWidth": 1.1
+    }
+  ]
+}

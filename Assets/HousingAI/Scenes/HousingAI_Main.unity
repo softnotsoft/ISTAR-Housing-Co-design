@@ -198,6 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scale: 1
   roomsParent: {fileID: 324632150}
+  roomSprite: {fileID: 7482667652216324306, guid: 1b35432ac5bc18e42bf690bc16e38f6f, type: 3}
 --- !u!114 &723818099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +232,7 @@ MonoBehaviour:
   zoomSpeed: 5
   minZoom: 2
   maxZoom: 20
-  panSpeed: 1
+  panSpeed: 0.1
 --- !u!1 &1027259723
 GameObject:
   m_ObjectHideFlags: 0

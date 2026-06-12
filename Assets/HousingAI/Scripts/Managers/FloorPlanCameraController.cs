@@ -101,19 +101,22 @@ public class FloorPlanCameraController : MonoBehaviour
 
     private Bounds CalculateBounds()
     {
-        Renderer firstRenderer = roomsParent.GetChild(0).GetComponent<Renderer>();
-        Bounds bounds = firstRenderer.bounds;
-
-        foreach (Transform child in roomsParent)
+        LineRenderer firstLine =
+            roomsParent.GetChild(0).GetComponentInChildren<LineRenderer>();
+    
+        Bounds bounds = firstLine.bounds;
+    
+        foreach (Transform room in roomsParent)
         {
-            Renderer renderer = child.GetComponent<Renderer>();
-
-            if (renderer != null)
+            LineRenderer[] lines =
+                room.GetComponentsInChildren<LineRenderer>();
+    
+            foreach (LineRenderer line in lines)
             {
-                bounds.Encapsulate(renderer.bounds);
+                bounds.Encapsulate(line.bounds);
             }
         }
-
+    
         return bounds;
     }
 }

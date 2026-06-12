@@ -11,6 +11,8 @@ public class FloorPlanLoader : MonoBehaviour
     [Header("Camera")]
     public FloorPlanCameraController cameraController;
 
+    private BaseApartmentData loadedApartment;
+
     private void Start()
     {
         LoadFloorPlan();
@@ -30,9 +32,11 @@ public class FloorPlanLoader : MonoBehaviour
             return;
         }
 
-        ApartmentData apartment = JsonUtility.FromJson<ApartmentData>(floorPlanJson.text);
+        BaseApartmentData apartment = JsonUtility.FromJson<BaseApartmentData>(floorPlanJson.text);
 
-        if (apartment == null || apartment.rooms == null)
+        loadedApartment = apartment;
+
+        if (apartment == null || apartment.boundary == null)
         {
             Debug.LogError("Erro ao converter JSON da planta.");
             return;
@@ -46,5 +50,10 @@ public class FloorPlanLoader : MonoBehaviour
         }
 
         Debug.Log($"Planta carregada: {apartment.name}");
+    }
+
+    public BaseApartmentData GetLoadedApartment()
+    {
+        return loadedApartment;
     }
 }

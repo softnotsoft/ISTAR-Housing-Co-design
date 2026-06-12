@@ -1,0 +1,35 @@
+{
+  "apartmentId": "apt_01",
+  "buildingId": "building_01",
+  "name": "Apartamento A",
+  "floor": 1,
+  "unit": "meters",
+  "boundary": [
+    { "x": 0.00, "y": 0.00 },
+    { "x": 8.50, "y": 0.00 },
+    { "x": 8.50, "y": 5.20 },
+    { "x": 5.30, "y": 5.20 },
+    { "x": 5.30, "y": 7.80 },
+    { "x": 0.00, "y": 7.80 }
+  ],
+  "entranceDoor": {
+    "id": "entrance_01",
+    "type": "entrance_door",
+    "start": { "x": 3.20, "y": 0.00 },
+    "end": { "x": 4.20, "y": 0.00 }
+  },
+  "windows": [
+    {
+      "id": "window_01",
+      "type": "window",
+      "start": { "x": 0.00, "y": 2.00 },
+      "end": { "x": 0.00, "y": 3.50 }
+    },
+    {
+      "id": "window_02",
+      "type": "window",
+      "start": { "x": 6.00, "y": 5.20 },
+      "end": { "x": 8.00, "y": 5.20 }
+    }
+  ]
+}

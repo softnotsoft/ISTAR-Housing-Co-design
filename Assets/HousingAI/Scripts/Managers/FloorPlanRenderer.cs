@@ -12,13 +12,27 @@ public class FloorPlanRenderer : MonoBehaviour
     [Header("Sprites")]
     public Sprite roomSprite;
 
-    public void Render(ApartmentData apartment)
+    public void Render(BaseApartmentData apartment)
     {
         ClearPreviousRooms();
 
-        foreach (RoomData room in apartment.rooms)
+        CreateApartmentBoundary(apartment);
+    }
+
+    private void CreateApartmentBoundary(BaseApartmentData apartment)
+    {
+        GameObject boundaryObject = new GameObject("Apartment Boundary");
+        boundaryObject.transform.SetParent(roomsParent);
+    
+        for (int i = 0; i < apartment.boundary.Length; i++)
         {
-            CreateRoom(room);
+            PointData currentPoint = apartment.boundary[i];
+            PointData nextPoint = apartment.boundary[(i + 1) % apartment.boundary.Length];
+    
+            Vector3 start = new Vector3(currentPoint.x * scale, currentPoint.y * scale, 0);
+            Vector3 end = new Vector3(nextPoint.x * scale, nextPoint.y * scale, 0);
+    
+            CreateLine(boundaryObject.transform, $"Boundary Wall {i + 1}", start, end);
         }
     }
 
@@ -27,70 +41,56 @@ public class FloorPlanRenderer : MonoBehaviour
         GameObject roomObject = new GameObject(room.name);
         roomObject.transform.SetParent(roomsParent);
 
-        // O Unity posiciona objetos pelo centro.
-        // O JSON define x e y como o canto inferior esquerdo da divisão.
-        // Por isso somamos metade da largura e atura para obter a posição do centro.
-        roomObject.transform.position = new Vector3(
-            (room.x + room.width / 2f) * scale,
-            (room.y + room.height / 2f) * scale,
-            0
-        );
-
-        SpriteRenderer renderer = roomObject.AddComponent<SpriteRenderer>();
-        renderer.sprite = roomSprite;
-        renderer.drawMode = SpriteDrawMode.Sliced;
-        renderer.size = new Vector2(room.width * scale, room.height * scale);
-
-        if (ColorUtility.TryParseHtmlString(room.color, out Color parsedColor))
+        if (room.points == null || room.points.Length < 3)
         {
-            renderer.color = parsedColor;
+            Debug.LogWarning($"A divisão {room.name} não tem pontos suficientes para formar um polígono.");
+            return;
         }
 
-        CreateRoomBorder(roomObject.transform, room);
-
+        CreatePolygonOutline(roomObject.transform, room);
         CreateLabel(roomObject.transform, room);
     }
 
-    private void CreateRoomBorder(Transform parent, RoomData room)
+    private void CreatePolygonOutline(Transform parent, RoomData room)
     {
-        float width = room.width * scale;
-        float height = room.height * scale;
-        float thickness = 0.08f;
+        for (int i = 0; i < room.points.Length; i++)
+        {
+            PointData currentPoint = room.points[i];
+            PointData nextPoint = room.points[(i + 1) % room.points.Length];
 
-        CreateBorderLine(parent, "Top Border",
-            new Vector3(0, height / 2f, -0.01f),
-            new Vector3(width, thickness, 1));
+            Vector3 start = new Vector3(currentPoint.x * scale, currentPoint.y * scale, 0);
+            Vector3 end = new Vector3(nextPoint.x * scale, nextPoint.y * scale, 0);
 
-        CreateBorderLine(parent, "Bottom Border",
-            new Vector3(0, -height / 2f, -0.01f),
-            new Vector3(width, thickness, 1));
-
-        CreateBorderLine(parent, "Left Border",
-            new Vector3(-width / 2f, 0, -0.01f),
-            new Vector3(thickness, height, 1));
-
-        CreateBorderLine(parent, "Right Border",
-            new Vector3(width / 2f, 0, -0.01f),
-            new Vector3(thickness, height, 1));
+            CreateLine(parent, $"Wall {i + 1}", start, end);
+        }
     }
 
-    private void CreateBorderLine(Transform parent, string name, Vector3 localPosition, Vector3 localScale)
+    private void CreateLine(Transform parent, string name, Vector3 start, Vector3 end)
     {
-        GameObject border = GameObject.CreatePrimitive(PrimitiveType.Quad);
-        border.name = name;
-        border.transform.SetParent(parent);
-        border.transform.localPosition = localPosition;
-        border.transform.localScale = localScale;
+        GameObject lineObject = new GameObject(name);
+        lineObject.transform.SetParent(parent);
 
-        Renderer borderRenderer = border.GetComponent<Renderer>();
-        borderRenderer.material.color = Color.black;
+        LineRenderer lineRenderer = lineObject.AddComponent<LineRenderer>();
+
+        lineRenderer.positionCount = 2;
+        lineRenderer.SetPosition(0, start);
+        lineRenderer.SetPosition(1, end);
+
+        lineRenderer.startWidth = 0.08f;
+        lineRenderer.endWidth = 0.08f;
+
+        lineRenderer.useWorldSpace = true;
+
+        Material lineMaterial = new Material(Shader.Find("Sprites/Default"));
+        lineMaterial.color = Color.black;
+        lineRenderer.material = lineMaterial;
     }
 
     private void CreateLabel(Transform parent, RoomData room)
     {
         GameObject labelObject = new GameObject("Label");
         labelObject.transform.SetParent(parent);
-        labelObject.transform.localPosition = Vector3.zero;
+        labelObject.transform.position = CalculatePolygonCenter(room);
 
         TextMeshPro text = labelObject.AddComponent<TextMeshPro>();
         text.text = $"{room.name}\n{room.people} pessoa(s)";
@@ -107,5 +107,17 @@ public class FloorPlanRenderer : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    private Vector3 CalculatePolygonCenter(RoomData room)
+    {
+        Vector3 sum = Vector3.zero;
+
+        foreach (PointData point in room.points)
+        {
+            sum += new Vector3(point.x * scale, point.y * scale, 0);
+        }
+
+        return sum / room.points.Length;
     }
 }

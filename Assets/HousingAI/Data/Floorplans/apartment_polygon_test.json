@@ -1,0 +1,89 @@
+{
+  "apartmentId": "apt_01",
+  "buildingId": "building_01",
+  "name": "Apartamento A",
+  "floor": 1,
+  "rooms": [
+    {
+      "id": "living_room",
+      "name": "Sala",
+      "type": "living_room",
+      "people": 3,
+      "color": "#C8A2C8",
+      "points": [
+        { "x": 0, "y": 0 },
+        { "x": 5, "y": 0 },
+        { "x": 5, "y": 4 },
+        { "x": 0, "y": 4 }
+      ]
+    },
+    {
+      "id": "kitchen_01",
+      "name": "Cozinha",
+      "type": "kitchen",
+      "people": 3,
+      "color": "#F6D6AD",
+      "points": [
+        { "x": 5, "y": 0 },
+        { "x": 8, "y": 0 },
+        { "x": 8, "y": 2.5 },
+        { "x": 5, "y": 2.5 }
+      ]
+    },
+    {
+      "id": "bathroom_01",
+      "name": "WC",
+      "type": "bathroom",
+      "people": 3,
+      "color": "#B5EAD7",
+      "points": [
+        { "x": 5, "y": 2.5 },
+        { "x": 6.5, "y": 2.5 },
+        { "x": 6.5, "y": 4 },
+        { "x": 5, "y": 4 }
+      ]
+    },
+    {
+      "id": "bedroom_01",
+      "name": "Quarto 1",
+      "type": "bedroom",
+      "people": 1,
+      "color": "#A7C7E7",
+      "points": [
+        { "x": 0, "y": 4 },
+        { "x": 3.5, "y": 4 },
+        { "x": 3.5, "y": 7 },
+        { "x": 0, "y": 7 }
+      ]
+    },
+    {
+      "id": "bedroom_02",
+      "name": "Quarto 2",
+      "type": "bedroom",
+      "people": 2,
+      "color": "#AFCBFF",
+      "points": [
+        { "x": 3.5, "y": 4 },
+        { "x": 6.5, "y": 4 },
+        { "x": 6.5, "y": 7 },
+        { "x": 3.5, "y": 7 }
+      ]
+    },
+    {
+      "id": "corridor_01",
+      "name": "Corredor",
+      "type": "corridor",
+      "people": 3,
+      "color": "#F4E7B5",
+      "points": [
+        { "x": 6.5, "y": 2.5 },
+        { "x": 8, "y": 2.5 },
+        { "x": 8, "y": 7 },
+        { "x": 6.5, "y": 7 },
+        { "x": 6.5, "y": 4 },
+        { "x": 5, "y": 4 },
+        { "x": 5, "y": 2.5 }
+      ]
+    }
+  ]
+}

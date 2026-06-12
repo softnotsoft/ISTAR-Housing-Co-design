@@ -8,10 +8,10 @@ public class RoomData
     public string type;
     public int people;
 
-    public float x;
-    public float y;
-    public float width;
-    public float height;
-
     public string color;
+
+    public PointData[] points;
+    public OpeningData[] doors;
+
+    public float area;
 }
