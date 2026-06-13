@@ -1,0 +1,109 @@
+{
+  "generatedPlanId": "generated_apt_01_v1",
+  "sourceBaseApartmentId": "apt_01",
+  "unit": "meters",
+  "rooms": [
+    {
+      "id": "living_room_01",
+      "name": "Sala",
+      "type": "living_room",
+      "people": 3,
+      "color": "#C8A2C8",
+      "area": 15.0,
+      "points": [
+        { "x": 0.0, "y": 0.0 },
+        { "x": 5.0, "y": 0.0 },
+        { "x": 5.0, "y": 3.0 },
+        { "x": 0.0, "y": 3.0 }
+      ],
+      "doors": [
+        {
+          "id": "door_living_01",
+          "type": "interior_door",
+          "start": { "x": 4.4, "y": 3.0 },
+          "end": { "x": 5.0, "y": 3.0 }
+        }
+      ]
+    },
+    {
+      "id": "kitchen_01",
+      "name": "Cozinha",
+      "type": "kitchen",
+      "people": 3,
+      "color": "#F6D6AD",
+      "area": 8.0,
+      "points": [
+        { "x": 5.0, "y": 0.0 },
+        { "x": 8.5, "y": 0.0 },
+        { "x": 8.5, "y": 2.3 },
+        { "x": 5.0, "y": 2.3 }
+      ],
+      "doors": []
+    },
+    {
+      "id": "corridor_01",
+      "name": "Corredor",
+      "type": "corridor",
+      "people": 3,
+      "color": "#F4E7B5",
+      "area": 6.0,
+      "points": [
+        { "x": 5.0, "y": 2.3 },
+        { "x": 8.5, "y": 2.3 },
+        { "x": 8.5, "y": 3.4 },
+        { "x": 6.1, "y": 3.4 },
+        { "x": 6.1, "y": 7.8 },
+        { "x": 5.0, "y": 7.8 }
+      ],
+      "doors": []
+    },
+    {
+      "id": "bedroom_01",
+      "name": "Quarto 1",
+      "type": "bedroom",
+      "people": 1,
+      "color": "#A7C7E7",
+      "area": 8.4,
+      "points": [
+        { "x": 0.0, "y": 3.0 },
+        { "x": 3.0, "y": 3.0 },
+        { "x": 3.0, "y": 5.8 },
+        { "x": 0.0, "y": 5.8 }
+      ],
+      "doors": []
+    },
+    {
+      "id": "bedroom_02",
+      "name": "Quarto 2",
+      "type": "bedroom",
+      "people": 2,
+      "color": "#AFCBFF",
+      "area": 10.0,
+      "points": [
+        { "x": 3.0, "y": 3.0 },
+        { "x": 5.0, "y": 3.0 },
+        { "x": 5.0, "y": 7.8 },
+        { "x": 3.0, "y": 7.8 },
+        { "x": 3.0, "y": 5.8 },
+        { "x": 0.0, "y": 5.8 },
+        { "x": 0.0, "y": 7.8 }
+      ],
+      "doors": []
+    },
+    {
+      "id": "bathroom_01",
+      "name": "WC",
+      "type": "bathroom",
+      "people": 3,
+      "color": "#B5EAD7",
+      "area": 4.2,
+      "points": [
+        { "x": 6.1, "y": 3.4 },
+        { "x": 8.5, "y": 3.4 },
+        { "x": 8.5, "y": 5.2 },
+        { "x": 6.1, "y": 5.2 }
+      ],
+      "doors": []
+    }
+  ]
+}

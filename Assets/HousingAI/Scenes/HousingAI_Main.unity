@@ -166,6 +166,9 @@ GameObject:
   - component: {fileID: 723818102}
   - component: {fileID: 723818104}
   - component: {fileID: 723818103}
+  - component: {fileID: 723818105}
+  - component: {fileID: 723818106}
+  - component: {fileID: 723818107}
   m_Layer: 0
   m_Name: App Manager
   m_TagString: Untagged
@@ -290,6 +293,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f802b2177497947a27189f4f233c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &723818105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8e095c88a9c99448966f436dc1fbda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorPlanLoader: {fileID: 723818099}
+  requestTestBuilder: {fileID: 723818101}
+  roomRulesLoader: {fileID: 723818102}
+  areaValidationService: {fileID: 723818104}
+--- !u!114 &723818106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec45b28d958baca42a5ec76b17dda185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorPlanLoader: {fileID: 723818099}
+  roomRulesLoader: {fileID: 723818102}
+  requestBuilder: {fileID: 723818101}
+  validationService: {fileID: 723818104}
+  generatedFloorPlanLoader: {fileID: 723818107}
+--- !u!114 &723818107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99edb278ebd6bf439efad912866127e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generatedFloorPlanJson: {fileID: 4900000, guid: 3052dffbd0951f24ea286c246e59bcef, type: 3}
 --- !u!1 &1027259723
 GameObject:
   m_ObjectHideFlags: 0

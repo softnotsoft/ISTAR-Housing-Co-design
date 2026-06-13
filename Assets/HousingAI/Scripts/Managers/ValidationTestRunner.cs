@@ -8,10 +8,10 @@ public class ValidationTestRunner : MonoBehaviour
     public RoomRulesLoader roomRulesLoader;
     public AreaValidationService areaValidationService;
 
-    private void Start()
-    {
-        Invoke(nameof(RunValidationTest), 0.1f);
-    }
+    //private void Start()
+    //{
+    //    Invoke(nameof(RunValidationTest), 0.1f);
+    //}
 
     private void RunValidationTest()
     {

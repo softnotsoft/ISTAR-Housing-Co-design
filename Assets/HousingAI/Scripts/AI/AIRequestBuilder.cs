@@ -35,10 +35,10 @@ public class AIRequestBuilder : MonoBehaviour
         return aiRequest;
     }
 
-    private void Start()
-    {
-        Invoke(nameof(PrintRequest), 0.2f);
-    }
+    //private void Start()
+    //{
+    //    Invoke(nameof(PrintRequest), 0.2f);
+    //}
 
     private void PrintRequest()
     {

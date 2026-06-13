@@ -7,10 +7,10 @@ public class RoomRulesLoader : MonoBehaviour
 
     private RoomRulesData roomRules;
 
-    private void Start()
-    {
-        LoadRules();
-    }
+    //private void Start()
+    //{
+    //    LoadRules();
+    //}
 
     public void LoadRules()
     {

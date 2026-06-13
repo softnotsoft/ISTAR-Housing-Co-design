@@ -13,10 +13,10 @@ public class FloorPlanLoader : MonoBehaviour
 
     private BaseApartmentData loadedApartment;
 
-    private void Start()
-    {
-        LoadFloorPlan();
-    }
+    //private void Start()
+    //{
+    //    LoadFloorPlan();
+    //}
 
     public void LoadFloorPlan()
     {
