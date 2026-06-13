@@ -162,6 +162,10 @@ GameObject:
   - component: {fileID: 723818099}
   - component: {fileID: 723818098}
   - component: {fileID: 723818100}
+  - component: {fileID: 723818101}
+  - component: {fileID: 723818102}
+  - component: {fileID: 723818104}
+  - component: {fileID: 723818103}
   m_Layer: 0
   m_Name: App Manager
   m_TagString: Untagged
@@ -211,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 305206fae9e24704aaaca17b59f9bd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorPlanJson: {fileID: 4900000, guid: cc794f5aa2977d0489f9871539cf32bf, type: 3}
+  floorPlanJson: {fileID: 4900000, guid: 72240f464bb389640ae9e8e0767852ec, type: 3}
   floorPlanRenderer: {fileID: 723818098}
   cameraController: {fileID: 723818100}
 --- !u!114 &723818100
@@ -233,6 +237,59 @@ MonoBehaviour:
   minZoom: 2
   maxZoom: 20
   panSpeed: 0.1
+--- !u!114 &723818101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c93dae4137cac48ad3edc1bf6f5793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &723818102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1786479cc25b5094e964ac729f34613b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomRulesJson: {fileID: 4900000, guid: 7bb3088f5ca408445843cba5eb0a40c5, type: 3}
+--- !u!114 &723818103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bf83c1b9f3f3c469e3a194bf433aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorPlanLoader: {fileID: 723818099}
+  requestTestBuilder: {fileID: 723818101}
+  roomRulesLoader: {fileID: 723818102}
+  areaValidationService: {fileID: 723818104}
+--- !u!114 &723818104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f802b2177497947a27189f4f233c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1027259723
 GameObject:
   m_ObjectHideFlags: 0
