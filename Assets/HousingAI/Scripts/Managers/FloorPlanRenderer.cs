@@ -120,4 +120,18 @@ public class FloorPlanRenderer : MonoBehaviour
 
         return sum / room.points.Length;
     }
+
+    public void RenderGeneratedFloorPlan(GeneratedFloorPlanData generatedPlan)
+    {
+        if (generatedPlan == null || generatedPlan.rooms == null)
+        {
+            Debug.LogError("Planta gerada inválida.");
+            return;
+        }
+
+        foreach (RoomData room in generatedPlan.rooms)
+        {
+            CreateRoom(room);
+        }
+    }
 }
