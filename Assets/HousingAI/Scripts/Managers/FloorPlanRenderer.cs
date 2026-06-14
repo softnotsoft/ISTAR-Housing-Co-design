@@ -34,6 +34,8 @@ public class FloorPlanRenderer : MonoBehaviour
     
             CreateLine(boundaryObject.transform, $"Boundary Wall {i + 1}", start, end);
         }
+
+        CreateApartmentOpenings(boundaryObject.transform, apartment);
     }
 
     private void CreateRoom(RoomData room)
@@ -48,6 +50,7 @@ public class FloorPlanRenderer : MonoBehaviour
         }
 
         CreatePolygonOutline(roomObject.transform, room);
+        CreateRoomOpenings(roomObject.transform, room);
         CreateLabel(roomObject.transform, room);
     }
 
@@ -67,6 +70,18 @@ public class FloorPlanRenderer : MonoBehaviour
 
     private void CreateLine(Transform parent, string name, Vector3 start, Vector3 end)
     {
+        CreateLine(parent, name, start, end, Color.black, 0.08f);
+    }
+
+    private void CreateLine(
+        Transform parent,
+        string name,
+        Vector3 start,
+        Vector3 end,
+        Color color,
+        float width
+    )
+    {
         GameObject lineObject = new GameObject(name);
         lineObject.transform.SetParent(parent);
 
@@ -76,14 +91,94 @@ public class FloorPlanRenderer : MonoBehaviour
         lineRenderer.SetPosition(0, start);
         lineRenderer.SetPosition(1, end);
 
-        lineRenderer.startWidth = 0.08f;
-        lineRenderer.endWidth = 0.08f;
+        lineRenderer.startWidth = width;
+        lineRenderer.endWidth = width;
 
         lineRenderer.useWorldSpace = true;
 
         Material lineMaterial = new Material(Shader.Find("Sprites/Default"));
-        lineMaterial.color = Color.black;
+        lineMaterial.color = color;
         lineRenderer.material = lineMaterial;
+    }
+
+    private void CreateApartmentOpenings(Transform parent, BaseApartmentData apartment)
+    {
+        CreateOpening(
+            parent,
+            apartment.entranceDoor,
+            "Entrance Door",
+            new Color(0.1f, 0.55f, 0.2f),
+            0.18f
+        );
+
+        if (apartment.windows == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < apartment.windows.Length; i++)
+        {
+            CreateOpening(
+                parent,
+                apartment.windows[i],
+                $"Window {i + 1}",
+                new Color(0.1f, 0.45f, 1f),
+                0.14f
+            );
+        }
+    }
+
+    private void CreateRoomOpenings(Transform parent, RoomData room)
+    {
+        if (room.doors == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < room.doors.Length; i++)
+        {
+            CreateOpening(
+                parent,
+                room.doors[i],
+                $"Door {i + 1}",
+                new Color(0.1f, 0.55f, 0.2f),
+                0.16f
+            );
+        }
+    }
+
+    private void CreateOpening(
+        Transform parent,
+        OpeningData opening,
+        string fallbackName,
+        Color color,
+        float width
+    )
+    {
+        if (opening == null || opening.start == null || opening.end == null)
+        {
+            return;
+        }
+
+        string openingName =
+            string.IsNullOrWhiteSpace(opening.id)
+                ? fallbackName
+                : opening.id;
+
+        Vector3 start =
+            new Vector3(opening.start.x * scale, opening.start.y * scale, -0.01f);
+
+        Vector3 end =
+            new Vector3(opening.end.x * scale, opening.end.y * scale, -0.01f);
+
+        CreateLine(
+            parent,
+            openingName,
+            start,
+            end,
+            color,
+            width
+        );
     }
 
     private void CreateLabel(Transform parent, RoomData room)
