@@ -150,6 +150,134 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &330833468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 330833470}
+  - component: {fileID: 330833469}
+  - component: {fileID: 330833476}
+  - component: {fileID: 330833475}
+  - component: {fileID: 330833474}
+  - component: {fileID: 330833473}
+  - component: {fileID: 330833472}
+  - component: {fileID: 330833471}
+  m_Layer: 0
+  m_Name: LLM Service
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &330833469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330833468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691290242d4db1a46bb3417dea543b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKey: AQ.Ab8RN6I11eNtEBW0MXlgcYwD63ZInKTB7EBxnV9hI17-L_gY2Q
+  model: gemini-flash-latest
+--- !u!4 &330833470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330833468}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.0510683, y: 3.6660628, z: -7.617312}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &330833471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330833468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b442fa77a9efa6c4da81314e07f1c326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &330833472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330833468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0b5a1a0995f2c49b8ba5a955c039f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &330833473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330833468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ba6ef5ea0e02a49b5b7fb8fe2b4ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &330833474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330833468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024acc6632f6e57418cc77181cda21ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &330833475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330833468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1786479cc25b5094e964ac729f34613b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomRulesJson: {fileID: 4900000, guid: 7bb3088f5ca408445843cba5eb0a40c5, type: 3}
+--- !u!114 &330833476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330833468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305206fae9e24704aaaca17b59f9bd3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorPlanJson: {fileID: 4900000, guid: 72240f464bb389640ae9e8e0767852ec, type: 3}
+  floorPlanRenderer: {fileID: 0}
+  cameraController: {fileID: 0}
 --- !u!1 &723818096
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,10 +293,15 @@ GameObject:
   - component: {fileID: 723818101}
   - component: {fileID: 723818102}
   - component: {fileID: 723818104}
-  - component: {fileID: 723818103}
-  - component: {fileID: 723818105}
   - component: {fileID: 723818106}
   - component: {fileID: 723818107}
+  - component: {fileID: 723818108}
+  - component: {fileID: 723818109}
+  - component: {fileID: 723818110}
+  - component: {fileID: 723818111}
+  - component: {fileID: 723818112}
+  - component: {fileID: 723818113}
+  - component: {fileID: 723818114}
   m_Layer: 0
   m_Name: App Manager
   m_TagString: Untagged
@@ -265,22 +398,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomRulesJson: {fileID: 4900000, guid: 7bb3088f5ca408445843cba5eb0a40c5, type: 3}
---- !u!114 &723818103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 723818096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79bf83c1b9f3f3c469e3a194bf433aae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floorPlanLoader: {fileID: 723818099}
-  requestTestBuilder: {fileID: 723818101}
-  roomRulesLoader: {fileID: 723818102}
-  areaValidationService: {fileID: 723818104}
 --- !u!114 &723818104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,22 +410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f802b2177497947a27189f4f233c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &723818105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 723818096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee8e095c88a9c99448966f436dc1fbda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floorPlanLoader: {fileID: 723818099}
-  requestTestBuilder: {fileID: 723818101}
-  roomRulesLoader: {fileID: 723818102}
-  areaValidationService: {fileID: 723818104}
 --- !u!114 &723818106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,17 +417,35 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723818096}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec45b28d958baca42a5ec76b17dda185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validationFeedbackBuilder: {fileID: 723818111}
+  roomRuleValidationService: {fileID: 723818109}
   floorPlanLoader: {fileID: 723818099}
   roomRulesLoader: {fileID: 723818102}
   requestBuilder: {fileID: 723818101}
   validationService: {fileID: 723818104}
   generatedFloorPlanLoader: {fileID: 723818107}
+  generatedPlanValidationService: {fileID: 723818108}
+  floorPlanRenderer: {fileID: 723818098}
+  boundaryValidationService: {fileID: 723818110}
 --- !u!114 &723818107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99edb278ebd6bf439efad912866127e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generatedFloorPlanJson: {fileID: 4900000, guid: 3052dffbd0951f24ea286c246e59bcef, type: 3}
+--- !u!114 &723818108
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -335,10 +454,94 @@ MonoBehaviour:
   m_GameObject: {fileID: 723818096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99edb278ebd6bf439efad912866127e, type: 3}
+  m_Script: {fileID: 11500000, guid: 024acc6632f6e57418cc77181cda21ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generatedFloorPlanJson: {fileID: 4900000, guid: 3052dffbd0951f24ea286c246e59bcef, type: 3}
+--- !u!114 &723818109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ba6ef5ea0e02a49b5b7fb8fe2b4ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &723818110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0b5a1a0995f2c49b8ba5a955c039f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &723818111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b442fa77a9efa6c4da81314e07f1c326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &723818112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f99c0d2a9505aa4cb72cffd018dc6b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generationPipeline: {fileID: 723818114}
+  floorPlanLoader: {fileID: 723818099}
+  roomRulesLoader: {fileID: 723818102}
+  requestTestBuilder: {fileID: 723818101}
+--- !u!114 &723818113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691290242d4db1a46bb3417dea543b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKey: AQ.Ab8RN6I11eNtEBW0MXlgcYwD63ZInKTB7EBxnV9hI17-L_gY2Q
+  model: gemini-flash-latest
+--- !u!114 &723818114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723818096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb95517b9c5b0144b6d31a1cd14f890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  llmService: {fileID: 723818113}
+  maxGenerationAttempts: 3
+  generatedPlanValidationService: {fileID: 723818108}
+  roomRuleValidationService: {fileID: 723818109}
+  boundaryValidationService: {fileID: 723818110}
+  validationFeedbackBuilder: {fileID: 723818111}
+  floorPlanRenderer: {fileID: 723818098}
 --- !u!1 &1027259723
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,3 +808,4 @@ SceneRoots:
   - {fileID: 2078363794}
   - {fileID: 723818097}
   - {fileID: 324632150}
+  - {fileID: 330833470}
