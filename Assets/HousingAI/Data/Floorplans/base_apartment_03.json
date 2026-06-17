@@ -1,0 +1,35 @@
+{
+  "apartmentId": "apt_03",
+  "buildingId": "building_01",
+  "name": "Apartamento C",
+  "floor": 1,
+  "unit": "meters",
+  "boundary": [
+    { "x": 0.00, "y": 0.00 },
+    { "x": 12.00, "y": 0.00 },
+    { "x": 12.00, "y": 6.80 },
+    { "x": 8.50, "y": 6.80 },
+    { "x": 8.50, "y": 8.00 },
+    { "x": 0.00, "y": 8.00 }
+  ],
+  "entranceDoor": {
+    "id": "entrance_03",
+    "type": "entrance_door",
+    "start": { "x": 0.00, "y": 3.00 },
+    "end": { "x": 0.00, "y": 4.20 }
+  },
+  "windows": [
+    {
+      "id": "window_05",
+      "type": "window",
+      "start": { "x": 4.00, "y": 0.00 },
+      "end": { "x": 6.00, "y": 0.00 }
+    },
+    {
+      "id": "window_06",
+      "type": "window",
+      "start": { "x": 12.00, "y": 2.00 },
+      "end": { "x": 12.00, "y": 4.50 }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "apartmentId": "apt_02",
+  "buildingId": "building_01",
+  "name": "Apartamento B",
+  "floor": 1,
+  "unit": "meters",
+  "boundary": [
+    { "x": 0.00, "y": 2.00 },
+    { "x": 2.50, "y": 2.00 },
+    { "x": 2.50, "y": 0.00 },
+    { "x": 11.50, "y": 0.00 },
+    { "x": 11.50, "y": 7.50 },
+    { "x": 0.00, "y": 7.50 }
+  ],
+  "entranceDoor": {
+    "id": "entrance_02",
+    "type": "entrance_door",
+    "start": { "x": 6.00, "y": 0.00 },
+    "end": { "x": 7.00, "y": 0.00 }
+  },
+  "windows": [
+    {
+      "id": "window_03",
+      "type": "window",
+      "start": { "x": 0.00, "y": 4.00 },
+      "end": { "x": 0.00, "y": 5.50 }
+    },
+    {
+      "id": "window_04",
+      "type": "window",
+      "start": { "x": 11.50, "y": 3.00 },
+      "end": { "x": 11.50, "y": 5.00 }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "apartmentId": "apt_04",
+  "buildingId": "building_01",
+  "name": "Apartamento D",
+  "floor": 1,
+  "unit": "meters",
+  "boundary": [
+    { "x": 0.00, "y": 0.00 },
+    { "x": 12.00, "y": 0.00 },
+    { "x": 12.00, "y": 9.50 },
+    { "x": 0.00, "y": 9.50 }
+  ],
+  "entranceDoor": {
+    "id": "entrance_04",
+    "type": "entrance_door",
+    "start": { "x": 5.00, "y": 0.00 },
+    "end": { "x": 6.20, "y": 0.00 }
+  },
+  "windows": [
+    {
+      "id": "window_07",
+      "type": "window",
+      "start": { "x": 0.00, "y": 4.00 },
+      "end": { "x": 0.00, "y": 6.50 }
+    },
+    {
+      "id": "window_08",
+      "type": "window",
+      "start": { "x": 12.00, "y": 3.00 },
+      "end": { "x": 12.00, "y": 5.50 }
+    },
+    {
+      "id": "window_09",
+      "type": "window",
+      "start": { "x": 8.00, "y": 9.50 },
+      "end": { "x": 10.50, "y": 9.50 }
+    }
+  ]
+}

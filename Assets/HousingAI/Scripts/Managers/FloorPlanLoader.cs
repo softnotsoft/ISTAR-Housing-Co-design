@@ -35,7 +35,7 @@ public class FloorPlanLoader : MonoBehaviour
         BaseApartmentData apartment = JsonUtility.FromJson<BaseApartmentData>(floorPlanJson.text);
 
         loadedApartment = apartment;
-
+        
         if (apartment == null || apartment.boundary == null)
         {
             Debug.LogError("Erro ao converter JSON da planta.");

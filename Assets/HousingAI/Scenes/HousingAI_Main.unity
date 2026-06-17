@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 305206fae9e24704aaaca17b59f9bd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorPlanJson: {fileID: 4900000, guid: 72240f464bb389640ae9e8e0767852ec, type: 3}
+  floorPlanJson: {fileID: 4900000, guid: c21f9412beea6f04788ce218a4b333b1, type: 3}
   floorPlanRenderer: {fileID: 723818098}
   cameraController: {fileID: 723818100}
 --- !u!114 &723818100
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691290242d4db1a46bb3417dea543b93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiKey: AQ.Ab8RN6I11eNtEBW0MXlgcYwD63ZInKTB7EBxnV9hI17-L_gY2Q
+  apiKey: 
   model: gemini-flash-latest
 --- !u!114 &723818114
 MonoBehaviour:
