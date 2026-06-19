@@ -4,31 +4,175 @@
     {
       "roomType": "bedroom",
       "people": 1,
-      "minArea": 6.0
+      "minArea": 6.0,
+      "minWidth": 2.0
     },
     {
       "roomType": "bedroom",
       "people": 2,
-      "minArea": 10.0
+      "minArea": 10.0,
+      "minWidth": 2.4
+    },
+    {
+      "roomType": "bedroom",
+      "people": 3,
+      "minArea": 12.0,
+      "minWidth": 2.6
+    },
+    {
+      "roomType": "bedroom",
+      "people": 4,
+      "minArea": 14.0,
+      "minWidth": 2.8
+    },
+    {
+      "roomType": "suite",
+      "people": 1,
+      "minArea": 10.0,
+      "minWidth": 2.4
+    },
+    {
+      "roomType": "suite",
+      "people": 2,
+      "minArea": 14.0,
+      "minWidth": 2.8
+    },
+    {
+      "roomType": "suite",
+      "people": 3,
+      "minArea": 16.0,
+      "minWidth": 3.0
+    },
+    {
+      "roomType": "suite",
+      "people": 4,
+      "minArea": 18.0,
+      "minWidth": 3.2
+    },
+    {
+      "roomType": "living_room",
+      "people": 1,
+      "minArea": 10.0,
+      "minWidth": 2.8
+    },
+    {
+      "roomType": "living_room",
+      "people": 2,
+      "minArea": 11.0,
+      "minWidth": 3.0
     },
     {
       "roomType": "living_room",
       "people": 3,
-      "minArea": 12.0
+      "minArea": 12.0,
+      "minWidth": 3.0
+    },
+    {
+      "roomType": "living_room",
+      "people": 4,
+      "minArea": 14.0,
+      "minWidth": 3.2
+    },
+    {
+      "roomType": "kitchen",
+      "people": 1,
+      "minArea": 6.0,
+      "minWidth": 2.0
+    },
+    {
+      "roomType": "kitchen",
+      "people": 2,
+      "minArea": 7.0,
+      "minWidth": 2.2
     },
     {
       "roomType": "kitchen",
       "people": 3,
-      "minArea": 8.0
+      "minArea": 8.0,
+      "minWidth": 2.4
+    },
+    {
+      "roomType": "kitchen",
+      "people": 4,
+      "minArea": 9.0,
+      "minWidth": 2.6
+    },
+    {
+      "roomType": "bathroom",
+      "people": 1,
+      "minArea": 3.0,
+      "minWidth": 1.5
+    },
+    {
+      "roomType": "bathroom",
+      "people": 2,
+      "minArea": 3.5,
+      "minWidth": 1.6
     },
     {
       "roomType": "bathroom",
       "people": 3,
-      "minArea": 4.0
+      "minArea": 4.0,
+      "minWidth": 1.7
+    },
+    {
+      "roomType": "bathroom",
+      "people": 4,
+      "minArea": 4.5,
+      "minWidth": 1.8
+    },
+    {
+      "roomType": "custom_room",
+      "people": 1,
+      "minArea": 4.0,
+      "minWidth": 1.8
+    },
+    {
+      "roomType": "custom_room",
+      "people": 2,
+      "minArea": 6.0,
+      "minWidth": 2.0
+    },
+    {
+      "roomType": "custom_room",
+      "people": 3,
+      "minArea": 8.0,
+      "minWidth": 2.2
+    },
+    {
+      "roomType": "custom_room",
+      "people": 4,
+      "minArea": 10.0,
+      "minWidth": 2.4
+    },
+    {
+      "roomType": "corridor",
+      "people": 0,
+      "minArea": 0.0,
+      "minWidth": 1.1
+    },
+    {
+      "roomType": "corridor",
+      "people": 1,
+      "minArea": 0.0,
+      "minWidth": 1.1
+    },
+    {
+      "roomType": "corridor",
+      "people": 2,
+      "minArea": 0.0,
+      "minWidth": 1.1
     },
     {
       "roomType": "corridor",
       "people": 3,
+      "minArea": 0.0,
+      "minWidth": 1.1
+    },
+    {
+      "roomType": "corridor",
+      "people": 4,
+      "minArea": 0.0,
       "minWidth": 1.1
     }
   ]

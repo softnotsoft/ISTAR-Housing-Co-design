@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FloorPlanGenerationPipeline : MonoBehaviour
@@ -136,18 +137,24 @@ public class FloorPlanGenerationPipeline : MonoBehaviour
     {
         string apartmentJson = JsonUtility.ToJson(apartment, true);
         string requestJson = JsonUtility.ToJson(request, true);
-        string rulesJson = JsonUtility.ToJson(rules, true);
+        string rulesJson = JsonUtility.ToJson(
+            BuildRelevantRules(request, rules),
+            true
+        );
 
         return @"
-Return ONLY valid JSON.
+Return only compact valid JSON.
 Do not use markdown.
 Do not explain.
 
-Generate a simple apartment floor plan compatible with this Unity C# model:
+Task:
+Generate a first-pass 2D apartment layout for Unity.
+Focus only on room geometry. Doors may be empty arrays.
 
+Output schema:
 {
-  ""generatedPlanId"": ""generated_apt_01_llm"",
-  ""sourceBaseApartmentId"": ""apt_01"",
+  ""generatedPlanId"": ""generated_layout"",
+  ""sourceBaseApartmentId"": """ + apartment.apartmentId + @""",
   ""unit"": ""meters"",
   ""rooms"": [
     {
@@ -168,30 +175,28 @@ Generate a simple apartment floor plan compatible with this Unity C# model:
   ]
 }
 
-Base apartment:
+Base apartment JSON:
 " + apartmentJson + @"
 
-User request:
+User request JSON:
 " + requestJson + @"
 
-Room rules:
+Minimum room rules JSON:
 " + rulesJson + @"
 
-Generate all rooms requested by the user.
-You may add one corridor if it is needed to use the apartment area and connect rooms.
-Use European Portuguese room names only.
-The corridor must work as a distribution area.
-Bedrooms and bathroom must have direct access from the corridor, not only through the living room, kitchen, bathroom or another bedroom.
-Living room and kitchen may connect to the corridor or entrance area.
-Every room must include at least one door in the doors array.
-Each door must be placed on a wall shared with the corridor, entrance area or an adjacent room that makes functional sense.
-Do not invent exterior windows. Use the existing base apartment windows as fixed constraints.
-Prefer placing bedrooms and living room next to exterior walls with windows when possible.
-All room points must stay inside the base apartment boundary.
-Use simple polygons.
-Fill as much of the apartment as possible.
-Every room must include id, name, type, people, color, area, points and doors.
-The area value must match the polygon area approximately.
+Generation rules:
+- Generate every requested room exactly once unless the request contains repeated room types.
+- You may add one corridor with type ""corridor"" only if useful.
+- Use European Portuguese room names.
+- Use simple rectangles whenever possible. Use L-shapes only if needed.
+- Use 4 to 6 points per room. Do not create detailed or curved polygons.
+- All room points must be inside or on the base apartment boundary.
+- Rooms must not overlap.
+- The area field must approximately match the polygon area.
+- Use at least the minimum area for each requested room.
+- Try to use most of the available apartment area, but valid simple geometry is more important.
+- Keep doors as empty arrays: ""doors"": [].
+- Do not add explanations, comments, markdown, or trailing text.
 Return JSON only.";
     }
 
@@ -205,53 +210,55 @@ Return JSON only.";
     {
         string apartmentJson = JsonUtility.ToJson(apartment, true);
         string requestJson = JsonUtility.ToJson(request, true);
-        string rulesJson = JsonUtility.ToJson(rules, true);
+        string rulesJson = JsonUtility.ToJson(
+            BuildRelevantRules(request, rules),
+            true
+        );
         string feedbackJson = JsonUtility.ToJson(feedback, true);
 
         return @"
-Return ONLY valid JSON.
+Return only compact valid JSON.
 Do not use markdown.
 Do not explain.
 
-The previous apartment floor plan was invalid.
-Correct it using the validation feedback below.
+The previous layout was invalid. Correct only the room geometry using the validation feedback.
+Doors may remain empty arrays.
 
-Base apartment:
+Base apartment JSON:
 " + apartmentJson + @"
 
-User request:
+User request JSON:
 " + requestJson + @"
 
-Room rules:
+Minimum room rules JSON:
 " + rulesJson + @"
 
-Previous invalid generated plan:
+Previous invalid layout JSON:
 " + previousJson + @"
 
-Validation feedback:
+Validation feedback JSON:
 " + feedbackJson + @"
 
-Return a corrected GeneratedFloorPlanData JSON with this structure:
+Return a corrected GeneratedFloorPlanData JSON:
 {
-  ""generatedPlanId"": ""generated_apt_01_llm_corrected"",
-  ""sourceBaseApartmentId"": ""apt_01"",
+  ""generatedPlanId"": ""generated_layout_corrected"",
+  ""sourceBaseApartmentId"": """ + apartment.apartmentId + @""",
   ""unit"": ""meters"",
   ""rooms"": []
 }
 
-Keep all rooms requested by the user.
-You may add one corridor if it is needed to use the apartment area and connect rooms.
-Use European Portuguese room names only.
-The corridor must work as a distribution area.
-Bedrooms and bathroom must have direct access from the corridor, not only through the living room, kitchen, bathroom or another bedroom.
-Living room and kitchen may connect to the corridor or entrance area.
-Every room must include at least one door in the doors array.
-Each door must be placed on a wall shared with the corridor, entrance area or an adjacent room that makes functional sense.
-Do not invent exterior windows. Use the existing base apartment windows as fixed constraints.
-Prefer placing bedrooms and living room next to exterior walls with windows when possible.
-Every room must include id, name, type, people, color, area, points and doors.
-All room points must stay inside the base apartment boundary.
-The full generated plan should use at least 98% of the available apartment area.
+Correction rules:
+- Keep every requested room.
+- You may add one corridor with type ""corridor"" only if useful.
+- Use European Portuguese room names.
+- Use simple rectangles whenever possible. Use L-shapes only if needed.
+- Use 4 to 6 points per room.
+- All room points must stay inside or on the base apartment boundary.
+- Rooms must not overlap.
+- The area field must approximately match the polygon area.
+- Use at least the minimum area for each requested room.
+- Keep doors as empty arrays: ""doors"": [].
+- Do not add explanations, comments, markdown, or trailing text.
 Return JSON only.";
     }
 
@@ -267,6 +274,57 @@ Return JSON only.";
             Debug.LogError(exception.Message);
             return null;
         }
+    }
+
+    private RoomRulesData BuildRelevantRules(
+        FloorPlanRequestData request,
+        RoomRulesData rules
+    )
+    {
+        if (
+            request == null ||
+            request.roomRequirements == null ||
+            rules == null ||
+            rules.rules == null
+        )
+        {
+            return rules;
+        }
+
+        List<RoomRuleData> relevantRules = new List<RoomRuleData>();
+
+        foreach (RoomRuleData rule in rules.rules)
+        {
+            if (rule == null)
+            {
+                continue;
+            }
+
+            if (rule.roomType == "corridor")
+            {
+                relevantRules.Add(rule);
+                continue;
+            }
+
+            foreach (RoomRequirementData requirement in request.roomRequirements)
+            {
+                if (
+                    requirement != null &&
+                    rule.roomType == requirement.type &&
+                    rule.people == requirement.people
+                )
+                {
+                    relevantRules.Add(rule);
+                    break;
+                }
+            }
+        }
+
+        RoomRulesData relevantData = new RoomRulesData();
+        relevantData.unit = rules.unit;
+        relevantData.rules = relevantRules.ToArray();
+
+        return relevantData;
     }
 
     private bool IsGeneratedPlanUsable(GeneratedFloorPlanData generatedPlan)

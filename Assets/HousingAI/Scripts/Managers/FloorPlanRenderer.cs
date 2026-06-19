@@ -14,7 +14,19 @@ public class FloorPlanRenderer : MonoBehaviour
 
     public void Render(BaseApartmentData apartment)
     {
-        ClearPreviousRooms();
+        Clear();
+
+        if (roomsParent == null)
+        {
+            Debug.LogError("RoomsParent nao foi atribuido.");
+            return;
+        }
+
+        if (apartment == null || apartment.boundary == null)
+        {
+            Debug.LogError("Apartamento invalido.");
+            return;
+        }
 
         CreateApartmentBoundary(apartment);
     }
@@ -194,7 +206,7 @@ public class FloorPlanRenderer : MonoBehaviour
         text.color = Color.black;
     }
 
-    private void ClearPreviousRooms()
+    public void Clear()
     {
         if (roomsParent == null) return;
 
@@ -218,6 +230,12 @@ public class FloorPlanRenderer : MonoBehaviour
 
     public void RenderGeneratedFloorPlan(GeneratedFloorPlanData generatedPlan)
     {
+        if (roomsParent == null)
+        {
+            Debug.LogError("RoomsParent nao foi atribuido.");
+            return;
+        }
+
         if (generatedPlan == null || generatedPlan.rooms == null)
         {
             Debug.LogError("Planta gerada inválida.");

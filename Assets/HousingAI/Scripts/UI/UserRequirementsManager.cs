@@ -149,7 +149,7 @@ public class UserRequirementsManager : MonoBehaviour
         emptyState.SetActive(true);
         ValidateRequirements();
     }
-
+    
     private void ValidateRequirements()
     {
         bool hasSala = false;
@@ -184,8 +184,78 @@ public class UserRequirementsManager : MonoBehaviour
 
     private void GoToLayoutsVisualization()
     {
+        FloorPlanRequestData request = BuildUserRequest();
+        
+        if (request == null)
+            return;
+
+        UserSelectionData.SelectedApartment = ApartmentSelectionManager.SelectedApartment;
+        UserSelectionData.UserRequest = request;
+        UserSelectionData.UserRequirementsJson = JsonUtility.ToJson(request, true);
+
         pageUserRequirements.SetActive(false);
         pageLayoutsVisualization.SetActive(true);
+    }
+
+    private FloorPlanRequestData BuildUserRequest()
+    {
+        BaseApartmentData selectedApartment = ApartmentSelectionManager.SelectedApartment;
+        
+        if (selectedApartment == null)
+        {
+            Debug.LogError("Nenhum apartamento selecionado encontrado.");
+            return null;
+        }
+
+        List<RoomRequirementData> requirements = new List<RoomRequirementData>();
+
+        foreach (RoomRequirementCardUI card in roomCards)
+        {
+            if (card.CurrentState != RoomRequirementCardState.Chosen)
+                continue;
+
+            requirements.Add(new RoomRequirementData
+            {
+                type = ConvertRoomNameToType(card.RoomName),
+                people = card.PeopleCount
+            });
+        }
+
+        FloorPlanRequestData request = new FloorPlanRequestData
+        {
+            apartmentId = selectedApartment.apartmentId,
+            totalResidents = totalHouseholdPeople,
+            roomRequirements = requirements.ToArray()
+        };
+        
+        Debug.Log("User requirements JSON:");
+        Debug.Log(JsonUtility.ToJson(request, true));
+
+        return request;
+    }
+
+    private string ConvertRoomNameToType(string roomName)
+    {
+        switch (roomName)
+        {
+            case "Sala":
+                return "living_room";
+            
+            case "Cozinha":
+                return "kitchen";
+
+            case "Quarto":
+                return "bedroom";
+
+            case "Casa de banho":
+                return "bathroom";
+
+            case "Suíte":
+                return "suite";
+
+            default:
+                return "custom_room";
+        }
     }
 
 }

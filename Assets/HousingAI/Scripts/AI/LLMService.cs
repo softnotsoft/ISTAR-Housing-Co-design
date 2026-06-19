@@ -9,18 +9,22 @@ public class LLMService : MonoBehaviour
     [Header("Gemini API")]
     [SerializeField] private string apiKey;
     [SerializeField] private string model = "gemini-2.5-flash";
+    [SerializeField] private int timeoutSeconds = 180;
+    [SerializeField] private float temperature = 0.2f;
 
     public async Task<string> GenerateAsync(string prompt)
     {
         string url = $"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent";
 
         string requestBody = BuildRequestBody(prompt);
+        Debug.Log($"LLM request started. Model: {model} | Prompt chars: {prompt.Length}");
 
         using UnityWebRequest request = new UnityWebRequest(url, "POST");
         byte[] bodyRaw = Encoding.UTF8.GetBytes(requestBody);
 
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
+        request.timeout = Mathf.Max(1, timeoutSeconds);
         request.SetRequestHeader("Content-Type", "application/json");
         request.SetRequestHeader("X-goog-api-key", apiKey);
 
@@ -48,6 +52,7 @@ public class LLMService : MonoBehaviour
     private string BuildRequestBody(string prompt)
     {
         string escapedPrompt = EscapeJson(prompt);
+        string temperatureValue = temperature.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
         return $@"
 {{
@@ -59,7 +64,11 @@ public class LLMService : MonoBehaviour
                 }}
             ]
         }}
-    ]
+    ],
+    ""generationConfig"": {{
+        ""temperature"": {temperatureValue},
+        ""responseMimeType"": ""application/json""
+    }}
 }}";
     }
 

@@ -8,10 +8,24 @@ public class AreaValidationService : MonoBehaviour
         RoomRulesData rulesData
     )
     {
+        AreaValidationResult result = new AreaValidationResult();
+
+        if (
+            apartment == null ||
+            apartment.boundary == null ||
+            request == null ||
+            request.roomRequirements == null ||
+            rulesData == null ||
+            rulesData.rules == null
+        )
+        {
+            result.isValid = false;
+            result.message = "Dados insuficientes para validar a area.";
+            return result;
+        }
+
         float availableArea = CalculatePolygonArea(apartment.boundary);
         float requiredArea = CalculateRequiredArea(request, rulesData);
-
-        AreaValidationResult result = new AreaValidationResult();
 
         result.availableArea = availableArea;
         result.requiredArea = requiredArea;

@@ -5,6 +5,9 @@ public class RoomRulesLoader : MonoBehaviour
     [Header("JSON File")]
     public TextAsset roomRulesJson;
 
+    [Header("Debug")]
+    [SerializeField] private bool logRules;
+
     private RoomRulesData roomRules;
 
     //private void Start()
@@ -20,15 +23,22 @@ public class RoomRulesLoader : MonoBehaviour
             return;
         }
 
-        roomRules = JsonUtility.FromJson<RoomRulesData>(roomRulesJson.text);
+        RoomRulesData loadedRules = JsonUtility.FromJson<RoomRulesData>(roomRulesJson.text);
 
-        if (roomRules == null || roomRules.rules == null)
+        if (loadedRules == null || loadedRules.rules == null || loadedRules.rules.Length == 0)
         {
             Debug.LogError("Erro ao carregar as regras.");
             return;
         }
 
+        roomRules = loadedRules;
+
         Debug.Log($"Foram carregadas {roomRules.rules.Length} regras.");
+
+        if (!logRules)
+        {
+            return;
+        }
 
         foreach (RoomRuleData rule in roomRules.rules)
         {
