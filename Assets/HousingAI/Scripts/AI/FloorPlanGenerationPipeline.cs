@@ -19,6 +19,10 @@ public class FloorPlanGenerationPipeline : MonoBehaviour
 
     public ValidationFeedbackData LastFeedback { get; private set; }
 
+    /// <summary>
+    /// Coordena a geracao completa: constroi o prompt, chama o Gemini, converte
+    /// a resposta, valida a geometria e renderiza a primeira planta valida.
+    /// </summary>
     public async Task<GeneratedFloorPlanData> GenerateAndRenderAsync(
         BaseApartmentData apartment,
         FloorPlanRequestData request,
@@ -39,6 +43,8 @@ public class FloorPlanGenerationPipeline : MonoBehaviour
         string prompt = BuildInitialPrompt(apartment, request, rules);
         int attempts = Mathf.Max(1, maxGenerationAttempts);
 
+        // Cada iteracao representa uma chamada ao modelo. Quando ha erros, o
+        // prompt seguinte inclui a planta anterior e o feedback das validacoes.
         for (int attempt = 1; attempt <= attempts; attempt++)
         {
             Debug.Log($"=== TENTATIVA LLM {attempt}/{attempts} ===");
@@ -53,6 +59,8 @@ public class FloorPlanGenerationPipeline : MonoBehaviour
             Debug.Log("Texto extraido do Gemini:");
             Debug.Log(extractedJson);
 
+            // Primeiro extrai-se o JSON do envelope Gemini e depois converte-se
+            // esse JSON para o modelo usado pelos validadores e pelo renderer.
             GeneratedFloorPlanData generatedPlan =
                 ParseGeneratedPlan(extractedJson);
 
@@ -135,6 +143,8 @@ public class FloorPlanGenerationPipeline : MonoBehaviour
         RoomRulesData rules
     )
     {
+        // Enviar apenas regras relevantes reduz o tamanho do prompt e impede que
+        // regras de divisoes nao pedidas confundam o modelo.
         string apartmentJson = JsonUtility.ToJson(apartment, true);
         string requestJson = JsonUtility.ToJson(request, true);
         string rulesJson = JsonUtility.ToJson(
@@ -208,6 +218,8 @@ Return JSON only.";
         ValidationFeedbackData feedback
     )
     {
+        // O prompt de correcao conserva o contexto original e acrescenta tanto
+        // a tentativa invalida como os erros concretos a corrigir.
         string apartmentJson = JsonUtility.ToJson(apartment, true);
         string requestJson = JsonUtility.ToJson(request, true);
         string rulesJson = JsonUtility.ToJson(
@@ -293,6 +305,8 @@ Return JSON only.";
 
         List<RoomRuleData> relevantRules = new List<RoomRuleData>();
 
+        // As regras de corredor sao sempre enviadas porque o modelo pode criar
+        // um corredor mesmo que nao tenha sido pedido explicitamente.
         foreach (RoomRuleData rule in rules.rules)
         {
             if (rule == null)
@@ -329,6 +343,8 @@ Return JSON only.";
 
     private bool IsGeneratedPlanUsable(GeneratedFloorPlanData generatedPlan)
     {
+        // Esta e uma verificacao estrutural minima antes dos validadores de
+        // negocio e geometria. Uma divisao precisa de pelo menos tres vertices.
         if (generatedPlan == null)
         {
             Debug.LogError("GeneratedFloorPlanData ficou null apos o parse.");
@@ -360,6 +376,8 @@ Return JSON only.";
         GeneratedFloorPlanData generatedPlan
     )
     {
+        // As tres validacoes sao independentes e o feedback final agrega todos
+        // os erros para que o Gemini os possa corrigir numa unica tentativa.
         GeneratedPlanValidationResult generatedValidation =
             generatedPlanValidationService.Validate(
                 apartment,

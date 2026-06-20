@@ -18,6 +18,10 @@ public class FloorPlanLoader : MonoBehaviour
     //    LoadFloorPlan();
     //}
 
+    /// <summary>
+    /// Converte o TextAsset selecionado no Inspector para BaseApartmentData,
+    /// desenha o contorno e ajusta a camara ao resultado.
+    /// </summary>
     public void LoadFloorPlan()
     {
         if (floorPlanJson == null)
@@ -31,7 +35,8 @@ public class FloorPlanLoader : MonoBehaviour
             Debug.LogError("FloorPlanRenderer não foi atribuído.");
             return;
         }
-
+        
+        // Os ficheiros em Data/Floorplans seguem diretamente este modelo C#.
         BaseApartmentData apartment = JsonUtility.FromJson<BaseApartmentData>(floorPlanJson.text);
 
         loadedApartment = apartment;
@@ -52,6 +57,7 @@ public class FloorPlanLoader : MonoBehaviour
         Debug.Log($"Planta carregada: {apartment.name}");
     }
 
+    /// <summary>Devolve o ultimo apartamento carregado com sucesso.</summary>
     public BaseApartmentData GetLoadedApartment()
     {
         return loadedApartment;

@@ -28,6 +28,8 @@ public class ApartmentCardUI : MonoBehaviour
 
     private void Setup()
     {
+        // Cada cartao possui o seu proprio TextAsset e converte-o quando a cena
+        // inicia, evitando manter uma lista duplicada de dados na UI.
         if (apartmentJson == null)
         {
             Debug.LogError("Apartment JSON não atribuído.", this);
@@ -54,6 +56,7 @@ public class ApartmentCardUI : MonoBehaviour
 
     private float CalculateArea(BaseApartmentData apartment)
     {
+        // Formula de Shoelace aplicada ao contorno para apresentar a area real.
         if (apartment.boundary == null || apartment.boundary.Length < 3)
             return 0f;
 
@@ -70,11 +73,13 @@ public class ApartmentCardUI : MonoBehaviour
         return Mathf.Abs(area) / 2f;
     }
 
+    /// <summary>Devolve os dados associados a este cartao.</summary>
     public BaseApartmentData GetApartmentData()
     {
         return apartmentData;
     }
 
+    /// <summary>Atualiza apenas o destaque visual de selecao.</summary>
     public void SetSelected(bool selected)
     {
         if (cardBackground != null)

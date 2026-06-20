@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class BoundaryValidationService : MonoBehaviour
 {
+    /// <summary>
+    /// Confirma que os vertices de todas as divisoes estao dentro ou exatamente
+    /// sobre o contorno do apartamento.
+    /// </summary>
     public BoundaryValidationResult Validate(
         BaseApartmentData apartment,
         GeneratedFloorPlanData generatedPlan
@@ -37,11 +41,10 @@ public class BoundaryValidationService : MonoBehaviour
     {
         foreach (PointData point in room.points)
         {
-            bool inside =
-    IsPointInsidePolygon(
-        point,
-        boundary
-    );
+            bool inside = IsPointInsidePolygon(
+                point,
+                boundary
+            );
 
             bool onBoundary =
                 IsPointOnPolygonBoundary(
@@ -59,10 +62,12 @@ public class BoundaryValidationService : MonoBehaviour
     }
 
     private bool IsPointInsidePolygon(
-    PointData point,
-    PointData[] polygon
+        PointData point,
+        PointData[] polygon
     )
     {
+        // Ray casting: uma semirreta que cruza o poligono um numero impar de
+        // vezes parte de um ponto interior.
         bool inside = false;
 
         int j = polygon.Length - 1;
@@ -105,9 +110,9 @@ public class BoundaryValidationService : MonoBehaviour
     }
 
     private bool IsPointOnPolygonBoundary(
-    PointData point,
-    PointData[] polygon
-)
+        PointData point,
+        PointData[] polygon
+    )
     {
         for (int i = 0; i < polygon.Length; i++)
         {
@@ -129,6 +134,7 @@ public class BoundaryValidationService : MonoBehaviour
         PointData end
     )
     {
+        // A tolerancia evita rejeitar pontos devido a imprecisao de floats.
         float tolerance = 0.001f;
 
         float crossProduct =

@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class ValidationFeedbackBuilder : MonoBehaviour
 {
+    /// <summary>
+    /// Reune os erros das validacoes de ocupacao, regras e limites num unico
+    /// objeto que decide se a planta pode ser renderizada.
+    /// </summary>
     public ValidationFeedbackData BuildFeedback(
         GeneratedPlanValidationResult generatedPlanValidation,
         RoomRuleValidationResult roomRuleValidation,

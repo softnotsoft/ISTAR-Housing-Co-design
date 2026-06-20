@@ -187,6 +187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   apiKey: AQ.Ab8RN6I11eNtEBW0MXlgcYwD63ZInKTB7EBxnV9hI17-L_gY2Q
   model: gemini-flash-latest
+  timeoutSeconds: 180
+  temperature: 0.2
 --- !u!4 &330833470
 Transform:
   m_ObjectHideFlags: 0
@@ -263,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomRulesJson: {fileID: 4900000, guid: 7bb3088f5ca408445843cba5eb0a40c5, type: 3}
+  logRules: 0
 --- !u!114 &330833476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,6 +401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomRulesJson: {fileID: 4900000, guid: 7bb3088f5ca408445843cba5eb0a40c5, type: 3}
+  logRules: 0
 --- !u!114 &723818104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,6 +527,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   apiKey: 
   model: gemini-flash-latest
+  timeoutSeconds: 180
+  temperature: 0.2
 --- !u!114 &723818114
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -42,12 +42,17 @@ public class LayoutsVisualizationManager : MonoBehaviour
     {
         Debug.Log("Entrou na Page_LayoutsVisualization");
 
+        // No fluxo atual, entrar na terceira pagina inicia automaticamente a geracao.
         if (generateOnEnable)
         {
             GenerateLayout();
         }
     }
 
+    /// <summary>
+    /// Prepara e valida os dados da sessao, chama o pipeline de IA e atualiza o
+    /// estado visual da terceira pagina.
+    /// </summary>
     public async void GenerateLayout()
     {
         if (isGenerating)
@@ -68,6 +73,8 @@ public class LayoutsVisualizationManager : MonoBehaviour
             return;
         }
 
+        // A chave evita repetir uma chamada paga para exatamente o mesmo pedido
+        // enquanto esta instancia da pagina continuar ativa.
         string requestKey = BuildRequestKey(apartment, request);
 
         if (lastGeneratedPlan != null && lastGeneratedRequestKey == requestKey)
@@ -80,6 +87,7 @@ public class LayoutsVisualizationManager : MonoBehaviour
         SetGenerateButtonEnabled(false);
         SetStatus("A preparar dados...");
 
+        // O contorno base e apresentado imediatamente, antes de esperar pelo LLM.
         floorPlanRenderer.Render(apartment);
         FocusCamera();
 
@@ -92,6 +100,7 @@ public class LayoutsVisualizationManager : MonoBehaviour
             return;
         }
 
+        // Pedidos impossiveis sao rejeitados localmente sem chamar o Gemini.
         AreaValidationResult areaValidation =
             areaValidationService.Validate(
                 apartment,
@@ -120,6 +129,7 @@ public class LayoutsVisualizationManager : MonoBehaviour
             return;
         }
 
+        // O resultado fica em cache apenas durante esta execucao da pagina.
         lastGeneratedPlan = generatedPlan;
         lastGeneratedRequestKey = requestKey;
 

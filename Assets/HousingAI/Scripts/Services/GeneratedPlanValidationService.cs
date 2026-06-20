@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class GeneratedPlanValidationService : MonoBehaviour
 {
+    /// <summary>
+    /// Compara a soma das areas geometricas das divisoes com a area total do
+    /// apartamento. O criterio atual exige pelo menos 98% de ocupacao.
+    /// </summary>
     public GeneratedPlanValidationResult Validate(
         BaseApartmentData apartment,
         GeneratedFloorPlanData generatedPlan
@@ -18,6 +22,8 @@ public class GeneratedPlanValidationService : MonoBehaviour
 
         float usedArea = 0f;
 
+        // A area e recalculada a partir dos pontos; nao se confia no campo
+        // room.area devolvido pelo modelo para esta metrica global.
         foreach (RoomData room in generatedPlan.rooms)
         {
             float roomArea =

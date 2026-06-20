@@ -1,6 +1,10 @@
 using System;
 
 [Serializable]
+/// <summary>
+/// Descreve uma divisao da planta gerada, incluindo o poligono, ocupacao,
+/// area declarada pelo modelo e eventuais portas.
+/// </summary>
 public class RoomData
 {
     public string id;

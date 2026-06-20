@@ -12,6 +12,7 @@ public class LLMTestRunner : MonoBehaviour
 
     private async void Start()
     {
+        // Executa o pipeline com um pedido fixo, sem depender das paginas da UI.
         if (!HasRequiredReferences())
         {
             return;

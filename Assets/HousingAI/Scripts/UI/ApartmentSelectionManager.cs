@@ -17,6 +17,7 @@ public class ApartmentSelectionManager : MonoBehaviour
 
     private void Start()
     {
+        // O botao Seguinte so fica disponivel depois de existir uma selecao.
         nextButton.interactable = false;
         nextButton.onClick.AddListener(GoToUserRequirements);
 
@@ -43,7 +44,7 @@ public class ApartmentSelectionManager : MonoBehaviour
     {
         Debug.Log("CLIQUE DETETADO");
 
-        // Se clicar novamente no mesmo card, desseleciona
+        // Clicar novamente no mesmo cartao funciona como desselecao.
         if (selectedCard == card)
         {
             selectedCard.SetSelected(false);
@@ -58,11 +59,11 @@ public class ApartmentSelectionManager : MonoBehaviour
             return;
         }
 
-        // Se havia outro card selecionado, limpa-o
+        // Apenas um apartamento pode estar selecionado de cada vez.
         if (selectedCard != null)
             selectedCard.SetSelected(false);
 
-        // Seleciona o novo card
+        // A propriedade estatica permite que a pagina seguinte aceda a selecao.
         selectedCard = card;
         selectedApartment = card.GetApartmentData();
         SelectedApartment = selectedApartment;
@@ -82,6 +83,7 @@ public class ApartmentSelectionManager : MonoBehaviour
 
     private void GoToUserRequirements()
     {
+        // A navegacao entre paginas e feita ativando e desativando GameObjects.
         if (selectedApartment == null)
             return;
 

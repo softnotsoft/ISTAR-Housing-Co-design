@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class RoomRuleValidationService : MonoBehaviour
 {
+    /// <summary>
+    /// Valida a area declarada de cada divisao contra a regra correspondente ao
+    /// seu tipo e numero de pessoas.
+    /// </summary>
     public RoomRuleValidationResult Validate(
         GeneratedFloorPlanData generatedPlan,
         RoomRulesData rules
@@ -33,6 +37,8 @@ public class RoomRuleValidationService : MonoBehaviour
     {
         RoomRuleData matchingRule = null;
 
+        // As regras sao identificadas pela mesma chave composta usada na
+        // validacao preliminar: tipo da divisao e numero de pessoas.
         foreach (RoomRuleData rule in rules.rules)
         {
             if (

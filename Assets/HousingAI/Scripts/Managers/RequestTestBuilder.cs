@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class RequestTestBuilder : MonoBehaviour
 {
+    /// <summary>
+    /// Cria um pedido fixo para testar validadores e o pipeline sem passar pela UI.
+    /// </summary>
     public FloorPlanRequestData CreateTestRequest()
     {
         FloorPlanRequestData request = new FloorPlanRequestData();

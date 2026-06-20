@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class AreaValidationService : MonoBehaviour
 {
+    /// <summary>
+    /// Verifica, antes de chamar o Gemini, se a soma das areas minimas das
+    /// divisoes pedidas cabe na area do poligono do apartamento.
+    /// </summary>
     public AreaValidationResult Validate(
         BaseApartmentData apartment,
         FloorPlanRequestData request,
@@ -24,6 +28,7 @@ public class AreaValidationService : MonoBehaviour
             return result;
         }
 
+        // A formula de Shoelace calcula a area de qualquer poligono simples.
         float availableArea = CalculatePolygonArea(apartment.boundary);
         float requiredArea = CalculateRequiredArea(request, rulesData);
 
@@ -45,6 +50,7 @@ public class AreaValidationService : MonoBehaviour
     {
         float total = 0f;
 
+        // Cada requisito e associado pela combinacao tipo + numero de pessoas.
         foreach (RoomRequirementData requirement in request.roomRequirements)
         {
             RoomRuleData rule = FindRule(

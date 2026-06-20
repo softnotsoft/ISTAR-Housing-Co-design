@@ -12,10 +12,15 @@ public class LLMService : MonoBehaviour
     [SerializeField] private int timeoutSeconds = 180;
     [SerializeField] private float temperature = 0.2f;
 
+    /// <summary>
+    /// Envia um prompt ao endpoint generateContent do Gemini e devolve a
+    /// resposta HTTP completa em JSON. A interpretacao fica a cargo do pipeline.
+    /// </summary>
     public async Task<string> GenerateAsync(string prompt)
     {
         string url = $"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent";
 
+        // O corpo segue o formato contents/parts exigido pela API Gemini.
         string requestBody = BuildRequestBody(prompt);
         Debug.Log($"LLM request started. Model: {model} | Prompt chars: {prompt.Length}");
 
@@ -51,6 +56,7 @@ public class LLMService : MonoBehaviour
 
     private string BuildRequestBody(string prompt)
     {
+        // O prompt e escapado porque e inserido manualmente numa string JSON.
         string escapedPrompt = EscapeJson(prompt);
         string temperatureValue = temperature.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
@@ -74,6 +80,8 @@ public class LLMService : MonoBehaviour
 
     private async Task SendRequestAsync(UnityWebRequest request)
     {
+        // UnityWebRequest nao oferece Task diretamente; o ciclo cede controlo a
+        // cada frame para nao bloquear a thread principal do Unity.
         UnityWebRequestAsyncOperation operation = request.SendWebRequest();
 
         while (!operation.isDone)

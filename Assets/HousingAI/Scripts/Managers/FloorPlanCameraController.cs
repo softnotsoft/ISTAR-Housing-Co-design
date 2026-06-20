@@ -20,6 +20,7 @@ public class FloorPlanCameraController : MonoBehaviour
 
     private void Update()
     {
+        // A navegacao e processada continuamente enquanto a planta e visivel.
         HandleZoom();
         HandlePan();
     }
@@ -40,9 +41,7 @@ public class FloorPlanCameraController : MonoBehaviour
         );
     }
 
-    // Permite navegar pela planta através de pan com o botão do meio do rato.
-    // A diferença entre a posição atual e anterior do rato é convertida num deslocamento
-    // da câmara, permitindo explorar plantas maiores sem alterar os dados da planta.
+    // Converte o arrasto com o botao central num deslocamento da camara.
     private void HandlePan()
     {
         if (Input.GetMouseButtonDown(2))
@@ -66,6 +65,10 @@ public class FloorPlanCameraController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Centra a camara ortografica e escolhe um zoom que enquadra todos os
+    /// LineRenderers existentes sob roomsParent.
+    /// </summary>
     public void FocusOnFloorPlan()
     {
         if (targetCamera == null || roomsParent == null)
@@ -84,7 +87,7 @@ public class FloorPlanCameraController : MonoBehaviour
 
         Vector3 center = bounds.center;
 
-        // Centra a câmara no centro da planta, mantendo a posição z atual para não alterar a distância.
+        // Mantem a coordenada Z para nao alterar o plano de visualizacao 2D.
         targetCamera.transform.position = new Vector3(
             center.x,
             center.y,

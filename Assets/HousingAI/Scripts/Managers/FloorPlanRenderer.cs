@@ -12,6 +12,10 @@ public class FloorPlanRenderer : MonoBehaviour
     [Header("Sprites")]
     public Sprite roomSprite;
 
+    /// <summary>
+    /// Limpa a visualizacao anterior e desenha apenas o contorno fixo, a porta
+    /// de entrada e as janelas do apartamento base.
+    /// </summary>
     public void Render(BaseApartmentData apartment)
     {
         Clear();
@@ -52,6 +56,7 @@ public class FloorPlanRenderer : MonoBehaviour
 
     private void CreateRoom(RoomData room)
     {
+        // Cada divisao tem um GameObject pai para agrupar paredes, portas e label.
         GameObject roomObject = new GameObject(room.name);
         roomObject.transform.SetParent(roomsParent);
 
@@ -94,6 +99,7 @@ public class FloorPlanRenderer : MonoBehaviour
         float width
     )
     {
+        // As paredes e aberturas sao representadas por segmentos independentes.
         GameObject lineObject = new GameObject(name);
         lineObject.transform.SetParent(parent);
 
@@ -167,6 +173,7 @@ public class FloorPlanRenderer : MonoBehaviour
         float width
     )
     {
+        // Aberturas incompletas sao ignoradas para manter a renderizacao robusta.
         if (opening == null || opening.start == null || opening.end == null)
         {
             return;
@@ -206,6 +213,7 @@ public class FloorPlanRenderer : MonoBehaviour
         text.color = Color.black;
     }
 
+    /// <summary>Remove todos os elementos graficos da planta atual.</summary>
     public void Clear()
     {
         if (roomsParent == null) return;
@@ -228,6 +236,10 @@ public class FloorPlanRenderer : MonoBehaviour
         return sum / room.points.Length;
     }
 
+    /// <summary>
+    /// Acrescenta as divisoes de uma planta validada ao contorno base que ja se
+    /// encontra desenhado.
+    /// </summary>
     public void RenderGeneratedFloorPlan(GeneratedFloorPlanData generatedPlan)
     {
         if (roomsParent == null)

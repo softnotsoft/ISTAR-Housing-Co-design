@@ -1,6 +1,9 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "HousingTheme", menuName = "HousingAI/UI Theme")]
+/// <summary>
+/// Paleta reutilizavel configurada como ScriptableObject no editor Unity.
+/// </summary>
 public class HousingTheme : ScriptableObject
 {
     public Color Primary;

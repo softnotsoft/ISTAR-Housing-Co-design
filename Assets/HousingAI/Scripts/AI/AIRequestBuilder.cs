@@ -8,6 +8,10 @@ public class AIRequestBuilder : MonoBehaviour
     public RoomRulesLoader roomRulesLoader;
     public AreaValidationService areaValidationService;
 
+    /// <summary>
+    /// Agrega os dados carregados e um pedido de teste num unico objeto.
+    /// Este helper pertence ao fluxo de diagnostico e nao ao wizard atual.
+    /// </summary>
     public AIRequestData BuildRequest()
     {
         BaseApartmentData apartment = floorPlanLoader.GetLoadedApartment();

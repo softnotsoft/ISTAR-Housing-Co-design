@@ -3,6 +3,10 @@ using UnityEngine;
 
 public static class LLMResponseParser
 {
+    /// <summary>
+    /// Navega no envelope da resposta Gemini e devolve apenas o texto da
+    /// primeira parte do primeiro candidato. Esse texto contem a planta JSON.
+    /// </summary>
     public static string ExtractText(string responseJson)
     {
         try
@@ -32,24 +36,28 @@ public static class LLMResponseParser
 }
 
 [Serializable]
+/// <summary>Envelope minimo necessario para desserializar a resposta Gemini.</summary>
 public class GeminiResponse
 {
     public GeminiCandidate[] candidates;
 }
 
 [Serializable]
+/// <summary>Candidato de resposta devolvido pelo modelo.</summary>
 public class GeminiCandidate
 {
     public GeminiContent content;
 }
 
 [Serializable]
+/// <summary>Conteudo textual associado a um candidato.</summary>
 public class GeminiContent
 {
     public GeminiPart[] parts;
 }
 
 [Serializable]
+/// <summary>Parte individual de uma resposta Gemini.</summary>
 public class GeminiPart
 {
     public string text;

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class FloorPlanRequestUI : MonoBehaviour
 {
+    // Wizard alternativo que concentra selecao, requisitos e geracao num unico
+    // componente. Nao esta ligado ao fluxo principal da cena UI_Main.
     [System.Serializable]
     public class ApartmentOption
     {
@@ -141,6 +143,7 @@ public class FloorPlanRequestUI : MonoBehaviour
 
     public async void Generate()
     {
+        // Impede chamadas concorrentes quando o utilizador carrega repetidamente.
         if (isGenerating)
         {
             return;
@@ -276,6 +279,7 @@ public class FloorPlanRequestUI : MonoBehaviour
 
     private FloorPlanRequestData BuildRequest(BaseApartmentData apartment)
     {
+        // Copia a selecao acumulada na UI para o contrato usado pelo pipeline.
         if (apartment == null)
         {
             return null;

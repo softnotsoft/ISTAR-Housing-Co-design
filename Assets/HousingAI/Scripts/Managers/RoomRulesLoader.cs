@@ -15,6 +15,10 @@ public class RoomRulesLoader : MonoBehaviour
     //    LoadRules();
     //}
 
+    /// <summary>
+    /// Carrega room_rules.json para memoria. As regras ficam disponiveis para a
+    /// validacao preliminar, para o prompt e para a validacao da resposta.
+    /// </summary>
     public void LoadRules()
     {
         if (roomRulesJson == null)
@@ -51,6 +55,7 @@ public class RoomRulesLoader : MonoBehaviour
         }
     }
 
+    /// <summary>Devolve o conjunto de regras carregado.</summary>
     public RoomRulesData GetRules()
     {
         return roomRules;

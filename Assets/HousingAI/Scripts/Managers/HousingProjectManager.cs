@@ -16,6 +16,8 @@ public class HousingProjectManager : MonoBehaviour
 
     private void Start()
     {
+        // Fluxo de integracao antigo que usa uma planta gerada guardada em JSON.
+        // O componente encontra-se desativado na cena HousingAI_Main.
         RunPipeline();
     }
 

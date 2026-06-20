@@ -7,6 +7,10 @@ public class GeneratedFloorPlanLoader : MonoBehaviour
 
     private GeneratedFloorPlanData loadedFloorPlan;
 
+    /// <summary>
+    /// Carrega uma planta gerada guardada como TextAsset. Este loader serve o
+    /// fluxo de teste antigo e nao e usado pela geracao atual via Gemini.
+    /// </summary>
     public void LoadGeneratedFloorPlan()
     {
         if (generatedFloorPlanJson == null)
@@ -31,6 +35,7 @@ public class GeneratedFloorPlanLoader : MonoBehaviour
         );
     }
 
+    /// <summary>Devolve a planta estatica carregada para testes.</summary>
     public GeneratedFloorPlanData GetLoadedFloorPlan()
     {
         return loadedFloorPlan;

@@ -38,6 +38,7 @@ public class RoomRequirementCardUI : MonoBehaviour
     public int PeopleCount => peopleCount;
     public RoomRequirementCardState CurrentState => currentState;
 
+    /// <summary>Inicializa textos, estado visual e evento de clique do cartao.</summary>
     public void Setup(string newRoomName)
     {
         roomName = newRoomName;
@@ -52,6 +53,7 @@ public class RoomRequirementCardUI : MonoBehaviour
         cardButton.onClick.AddListener(() => OnCardClicked?.Invoke(this));
     }
 
+    /// <summary>Mostra o cartao ainda nao escolhido.</summary>
     public void SetUnselected()
     {
         currentState = RoomRequirementCardState.Unselected;
@@ -61,6 +63,7 @@ public class RoomRequirementCardUI : MonoBehaviour
         chosenState.SetActive(false);
     }
 
+    /// <summary>Mostra o cartao que aguarda a escolha do numero de pessoas.</summary>
     public void SetSelected()
     {
         currentState = RoomRequirementCardState.Selected;
@@ -70,6 +73,7 @@ public class RoomRequirementCardUI : MonoBehaviour
         chosenState.SetActive(false);
     }
 
+    /// <summary>Confirma a divisao e apresenta a ocupacao selecionada.</summary>
     public void SetChosen(int selectedPeopleCount)
     {
         peopleCount = selectedPeopleCount;
@@ -84,6 +88,7 @@ public class RoomRequirementCardUI : MonoBehaviour
         selectedState.SetActive(false);
         chosenState.SetActive(true);
     }
+    /// <summary>Impede que uma divisao obrigatoria seja editada pela UI.</summary>
     public void SetLocked(bool locked)
     {
         IsLocked = locked;

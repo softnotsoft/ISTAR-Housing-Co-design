@@ -13,6 +13,8 @@ public class ValidationTestRunner : MonoBehaviour
     //    Invoke(nameof(RunValidationTest), 0.1f);
     //}
 
+    // Executa manualmente a validacao preliminar com dados preparados pelos
+    // loaders. O Start automatico esta desativado, por isso e apenas diagnostico.
     private void RunValidationTest()
     {
         BaseApartmentData apartment = floorPlanLoader.GetLoadedApartment();

@@ -36,6 +36,8 @@ public class UserRequirementsManager : MonoBehaviour
 
     private void Start()
     {
+        // A pagina comeca pela pergunta sobre o agregado; os cartoes de divisoes
+        // so sao criados depois de o utilizador responder.
         nextButton.interactable = false;
 
         householdPeoplePanel.SetActive(true);
@@ -74,6 +76,8 @@ public class UserRequirementsManager : MonoBehaviour
     {
         ClearExistingCards();
         
+        // Sala e cozinha sao obrigatorias, com a ocupacao de todo o agregado, e
+        // ficam bloqueadas para nao poderem ser removidas.
         CreateRoomCard("Sala", totalHouseholdPeople, true, true);
         CreateRoomCard("Cozinha", totalHouseholdPeople, true, true);
         CreateRoomCard("Quarto");
@@ -122,6 +126,7 @@ public class UserRequirementsManager : MonoBehaviour
             return;
         }
 
+        // Ao abrir outro cartao, o anterior regressa ao estado neutro.
         if (selectedRoomCard != null && selectedRoomCard.CurrentState == RoomRequirementCardState.Selected)
         {
             selectedRoomCard.SetUnselected();
@@ -141,6 +146,7 @@ public class UserRequirementsManager : MonoBehaviour
             return;
         }
 
+        // Uma divisao nao pode ser configurada para mais pessoas do que o agregado.
         peopleCount = Mathf.Min(peopleCount, totalHouseholdPeople);
         selectedRoomCard.SetChosen(peopleCount);
         selectedRoomCard = null;
@@ -152,6 +158,8 @@ public class UserRequirementsManager : MonoBehaviour
     
     private void ValidateRequirements()
     {
+        // Esta e a regra atual da UI: todos estes cinco tipos devem estar no
+        // pedido para permitir a passagem a pagina de visualizacao.
         bool hasSala = false;
         bool hasCozinha = false;
         bool hasQuarto = false;
@@ -189,6 +197,7 @@ public class UserRequirementsManager : MonoBehaviour
         if (request == null)
             return;
 
+        // O estado estatico transporta os dados entre paginas sem os escrever em disco.
         UserSelectionData.SelectedApartment = ApartmentSelectionManager.SelectedApartment;
         UserSelectionData.UserRequest = request;
         UserSelectionData.UserRequirementsJson = JsonUtility.ToJson(request, true);
@@ -199,6 +208,7 @@ public class UserRequirementsManager : MonoBehaviour
 
     private FloorPlanRequestData BuildUserRequest()
     {
+        // Converte apenas cartoes confirmados para o modelo enviado ao pipeline.
         BaseApartmentData selectedApartment = ApartmentSelectionManager.SelectedApartment;
         
         if (selectedApartment == null)
@@ -236,6 +246,8 @@ public class UserRequirementsManager : MonoBehaviour
 
     private string ConvertRoomNameToType(string roomName)
     {
+        // A UI usa nomes legiveis em portugues; JSON, regras e prompts usam
+        // identificadores tecnicos estaveis em ingles.
         switch (roomName)
         {
             case "Sala":
